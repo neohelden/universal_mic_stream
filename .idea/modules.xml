@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/mic_stream_plus.iml" filepath="$PROJECT_DIR$/mic_stream_plus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/mic_stream_plus_android.iml" filepath="$PROJECT_DIR$/android/mic_stream_plus_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/android/mic_stream_plus_example_android.iml" filepath="$PROJECT_DIR$/example/android/mic_stream_plus_example_android.iml" />
+    </modules>
+  </component>
+</project>
