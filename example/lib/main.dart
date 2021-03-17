@@ -14,7 +14,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
   String _buttonText = "Record to File";
   String _button2Text = "Record as Stream";
   String _filename = "test.wav";

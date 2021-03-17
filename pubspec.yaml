@@ -38,3 +38,5 @@ flutter:
         pluginClass: MicStreamPlusPlugin
       ios:
         pluginClass: MicStreamPlusPlugin
+      macos:
+        pluginClass: MicStreamPlusPlugin
