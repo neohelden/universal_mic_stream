@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:mic_stream_plus/mic_stream_plus.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:mic_stream_plus/mic_stream_plus.dart' as MicStreamPlus;
 import "package:os_detect/os_detect.dart" as platform;
 import 'package:path_provider/path_provider.dart';
 
@@ -17,6 +18,7 @@ class _MyAppState extends State<MyApp> {
   String _buttonText = "Record to File";
   String _button2Text = "Record as Stream";
   String _filename = "test.wav";
+  AudioPlayer? audioPlayer;
   var completeDataStream = <int>[];
 
   late TextEditingController filenameTextController;
@@ -74,31 +76,43 @@ class _MyAppState extends State<MyApp> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      if (_buttonText == "Record to File") {
+                  onPressed: () async {
+                    if (_buttonText == "Record to File") {
+                      setState(() {
                         _buttonText = "Stop Record";
-                        getDownloadStoragePath().then((path) async {
-                          if (_filename.isEmpty) _filename = "test.wav";
-                          if (!_filename.endsWith(".wav")) _filename += ".wav";
+                      });
+                      debugPrint("Start recording");
 
-                          filenameTextController.text = _filename;
-
-                          debugPrint("Recording to file: $path/$_filename");
-
-                          var file = await MicStreamPlus.startRecordingToFile(
-                            path: path,
-                            name: _filename,
-                          );
-
-                          // Save the file on the file system
-                          file.saveTo(file.path);
-                        });
-                      } else {
-                        _buttonText = "Record to File";
-                        MicStreamPlus.stopRecording();
+                      String? path;
+                      if (!kIsWeb) {
+                        path = await getDownloadStoragePath();
                       }
-                    });
+
+                      if (_filename.isEmpty) _filename = "test.wav";
+                      if (!_filename.endsWith(".wav")) _filename += ".wav";
+
+                      filenameTextController.text = _filename;
+
+                      debugPrint("Recording to file: $path/$_filename");
+
+                      var file = await MicStreamPlus.startRecordingToFile(
+                        path: path!,
+                        name: _filename,
+                      );
+
+                      file.saveTo(file.path);
+
+                      debugPrint("Play recorded audio");
+                      audioPlayer = AudioPlayer();
+                      await audioPlayer!.setUrl(file.path);
+                      audioPlayer!.play();
+                    } else {
+                      setState(() {
+                        _buttonText = "Record to File";
+                      });
+                      debugPrint("Stop recording");
+                      MicStreamPlus.stopRecording();
+                    }
                   },
                   child: Text(
                     _buttonText,
@@ -112,7 +126,7 @@ class _MyAppState extends State<MyApp> {
                     setState(() {
                       _button2Text = "Stop Record";
                     });
-                    (await MicStreamPlus.getMicStream()).listen((value) {
+                    (await MicStreamPlus.startRecording())!.listen((value) {
                       if (value != null) {
                         setState(() {
                           completeDataStream.addAll(value);

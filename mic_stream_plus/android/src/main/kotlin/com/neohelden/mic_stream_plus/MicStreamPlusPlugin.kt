@@ -47,10 +47,10 @@ class MicStreamPlusPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Strea
   private val blockAlign: Short = (numChannels * (bps / 8)).toShort()
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.flutterEngine.dartExecutor, "mic_stream_plus")
+    channel = MethodChannel(flutterPluginBinding.flutterEngine.dartExecutor, "neohelden.com/mic_stream_plus")
     channel.setMethodCallHandler(this)
 
-    eventChannel = EventChannel(flutterPluginBinding.flutterEngine.dartExecutor, "audio_stream")
+    eventChannel = EventChannel(flutterPluginBinding.flutterEngine.dartExecutor, "neohelden/com.audio_stream")
     eventChannel.setStreamHandler(this)
   }
 
@@ -59,19 +59,16 @@ class MicStreamPlusPlugin : FlutterPlugin, MethodCallHandler, EventChannel.Strea
     fun registerWith(registrar: Registrar) {
       val plugin = MicStreamPlusPlugin()
 
-      val channel = MethodChannel(registrar.messenger(), "mic_stream_plus")
+      val channel = MethodChannel(registrar.messenger(), "neohelden.com/mic_stream_plus")
       channel.setMethodCallHandler(plugin)
 
-      val eventChannel = EventChannel(registrar.messenger(), "audio_stream")
+      val eventChannel = EventChannel(registrar.messenger(), "neohelden.com/audio_stream")
       eventChannel.setStreamHandler(plugin)
     }
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     when (call.method) {
-      "getPlatformVersion" -> {
-        result.success("Android ${android.os.Build.VERSION.RELEASE}")
-      }
       "startRecording" -> {
         startRecording()
         result.success(null)
