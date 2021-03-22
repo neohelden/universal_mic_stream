@@ -4,12 +4,19 @@ version: 0.0.1
 author: Neohelden GmbH
 homepage: https://neohelden.com
 
+publish_to: "none"
+
 environment:
   sdk: '>=2.12.0 <3.0.0'
+  # Flutter versions prior to 1.10 did not support
+  # the flutter.plugin.platforms map.
+  flutter: ">=1.10.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  mic_stream_plus_platform_interface:
+    path: ../mic_stream_plus_platform_interface
 
   # Manages os permissions for microphone and storage access.
   permission_handler: ^6.0.1+1

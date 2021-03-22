@@ -11,8 +11,8 @@ public class SwiftMicStreamPlusPlugin: NSObject, FlutterPlugin, FlutterStreamHan
     var isRecording = false;
 
     public static func register(with registrar: FlutterPluginRegistrar) {
-        let channel = FlutterMethodChannel(name: "mic_stream_plus", binaryMessenger: registrar.messenger())
-        let eventChannel = FlutterEventChannel(name: "audio_stream", binaryMessenger: registrar.messenger())
+        let channel = FlutterMethodChannel(name: "neohelden.com/mic_stream_plus", binaryMessenger: registrar.messenger())
+        let eventChannel = FlutterEventChannel(name: "neohelden/com.audio_stream", binaryMessenger: registrar.messenger())
         let instance = SwiftMicStreamPlusPlugin()
         eventChannel.setStreamHandler(instance)
         registrar.addMethodCallDelegate(instance, channel: channel)
