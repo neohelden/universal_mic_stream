@@ -1,0 +1,24 @@
+name: universal_mic_stream_example
+description: Demonstrates how to use the universal_mic_stream plugin.
+publish_to: 'none'
+version: 0.0.1
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  path_provider: ^2.0.1
+  just_audio: ^0.7.1
+
+  universal_mic_stream:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

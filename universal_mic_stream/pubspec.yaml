@@ -1,0 +1,52 @@
+name: universal_mic_stream
+description: The universal_mic_stream plugin
+version: 0.0.1
+author: Neohelden GmbH
+homepage: https://neohelden.com
+
+publish_to: "none"
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+  # Flutter versions prior to 1.10 did not support
+  # the flutter.plugin.platforms map.
+  flutter: ">=1.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  universal_mic_stream_platform_interface:
+    git:
+      url: git@github.com:neohelden/universal_mic_stream.git
+      path: universal_mic_stream_platform_interface
+
+  # Manages os permissions for microphone and storage access.
+  permission_handler: ^6.0.1+1
+
+  # OS information
+  os_detect: ^2.0.0-nullsafety.0
+
+  # Join paths.
+  path: ^1.8.0
+
+  # Cross platform files
+  cross_file: ^0.3.1
+
+dev_dependencies:
+  # Enforces effective dart code style.
+  effective_dart: ^1.3.1
+
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.neohelden.universal_mic_stream
+        pluginClass: UniversalMicStreamPlugin
+      ios:
+        pluginClass: UniversalMicStreamPlugin
+      macos:
+        pluginClass: UniversalMicStreamPlugin
