@@ -18,7 +18,7 @@ dependencies:
 
   universal_mic_stream_platform_interface:
     git:
-      url: git@github.com:neohelden/universal_mic_stream.git
+      url: http://github.com/neohelden/universal_mic_stream.git
       path: universal_mic_stream_platform_interface
       ref: 73ac5dc0bf329b0d7277598ba750a456be8c20fc
 
