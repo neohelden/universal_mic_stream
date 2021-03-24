@@ -1,6 +1,6 @@
 # universal_mic_stream
 
-Static functions for accessing the microphone cross-platform with ease.
+**universal_mic_stream** enables you to access the microphone as a stream of data across different platforms and devices.
 
 Currently, **universal_mic_stream** works on **iOS**, **Android** and **MacOS**, with Web support planned for the near future.
 

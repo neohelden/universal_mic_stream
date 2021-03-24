@@ -1,7 +1,9 @@
 name: universal_mic_stream_example
 description: Demonstrates how to use the universal_mic_stream plugin.
 publish_to: 'none'
-version: 0.0.1
+version: 0.1.0
+author: Neohelden GmbH
+homepage: https://neohelden.com
 
 environment:
   sdk: '>=2.12.0 <3.0.0'

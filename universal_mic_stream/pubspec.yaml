@@ -1,6 +1,6 @@
 name: universal_mic_stream
-description: The universal_mic_stream plugin
-version: 0.0.1
+description: universal_mic_stream enables you to access the microphone as a stream of data across different platforms and devices.
+version: 0.1.0
 author: Neohelden GmbH
 homepage: https://neohelden.com
 
@@ -20,6 +20,7 @@ dependencies:
     git:
       url: git@github.com:neohelden/universal_mic_stream.git
       path: universal_mic_stream_platform_interface
+      ref: 73ac5dc0bf329b0d7277598ba750a456be8c20fc
 
   # Manages os permissions for microphone and storage access.
   permission_handler: ^6.0.1+1

@@ -4,14 +4,14 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'universal_mic_stream'
-  s.version          = '0.0.1'
-  s.summary          = 'A new Flutter plugin.'
+  s.version          = '0.1.0'
+  s.summary          = 'universal_mic_stream enables you to access the microphone as a stream of data across different platforms and devices.'
   s.description      = <<-DESC
 A new Flutter plugin.
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://neohelden.com'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Neohelden GmbH' => 'hello@neohelden.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
