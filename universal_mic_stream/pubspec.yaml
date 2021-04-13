@@ -22,6 +22,9 @@ dependencies:
       path: universal_mic_stream_platform_interface
       ref: 73ac5dc0bf329b0d7277598ba750a456be8c20fc
 
+  universal_mic_stream_web:
+    path: ../universal_mic_stream_web
+
   # Manages os permissions for microphone and storage access.
   permission_handler: ^6.0.1+1
 
@@ -51,3 +54,5 @@ flutter:
         pluginClass: UniversalMicStreamPlugin
       macos:
         pluginClass: UniversalMicStreamPlugin
+      web:
+        default_package: mic_stream_plus_web

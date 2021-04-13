@@ -1,0 +1,37 @@
+name: universal_mic_stream_web
+description: The web implementation of universal_mic_stream.
+version: 0.0.1
+author: Neohelden GmbH
+homepage: https://neohelden.com
+
+flutter:
+  plugin:
+    platforms:
+      web:
+        pluginClass: UniversalMicStreamPlugin
+        fileName: universal_mic_stream_web.dart
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+
+  # Cross platform files
+  cross_file: ^0.3.1
+  http: ^0.13.0
+  just_audio: ^0.7.1
+  js: ^0.6.3
+
+  universal_mic_stream_platform_interface:
+    git:
+      url: http://github.com/neohelden/universal_mic_stream.git
+      path: universal_mic_stream_platform_interface
+      ref: 73ac5dc0bf329b0d7277598ba750a456be8c20fc
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
