@@ -26,7 +26,7 @@ dependencies:
     git:
       url: http://github.com/neohelden/universal_mic_stream.git
       path: universal_mic_stream_web
-      ref: fd8b5ea4afdf4f1c6f1e8196d79c8bec64c7e7e7
+      ref: 2d157d7db7398a32fcf51faf62f5e177ccd87f37
 
   # Manages os permissions for microphone and storage access.
   permission_handler: ^6.0.1+1
