@@ -96,15 +96,23 @@ class _MyAppState extends State<MyApp> {
                       debugPrint("Recording to file: $path/$_filename");
 
                       var file = await UniversalMicStream.startRecordingToFile(
-                        path: path!,
+                        path: path ?? "",
                         name: _filename,
                       );
 
                       file.saveTo(file.path);
 
                       debugPrint("Play recorded audio");
+
                       audioPlayer = AudioPlayer();
-                      await audioPlayer!.setFilePath(file.path);
+                      if (kIsWeb) {
+                        print("Url: ${file.path}");
+                        var url = file.path.substring(5);
+                        print("Url2: ${url}");
+                        await audioPlayer!.setUrl(url);
+                      } else {
+                        await audioPlayer!.setFilePath(file.path);
+                      }
                       audioPlayer!.play();
                     } else {
                       setState(() {

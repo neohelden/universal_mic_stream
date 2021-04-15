@@ -13,6 +13,10 @@ const EventChannel _eventChannel = EventChannel('neohelden/com.audio_stream');
 
 /// Starts recording the microphone input.
 Future<Stream<Uint8List?>?> startRecording() async {
+  if (kIsWeb) {
+    return UniversalMicStreamPlatform.instance.startRecording();
+  }
+
   bool micPermissionGranted;
   if (platform.isAndroid || platform.isIOS) {
     var micPermissionStatus = await Permission.microphone.request();
@@ -67,17 +71,13 @@ Future<XFile> startRecordingToFile({
     }, onDone: () async {
       debugPrint("Start writing file...");
       XFile? file;
-      if (kIsWeb) {
-        file = XFile.fromData(Uint8List.fromList(completeDataStream));
-      } else {
-        file = await _writeWavFile(
-          data: completeDataStream,
-          path: path,
-          name: name,
-        );
-        var length = await file.length();
-        debugPrint("Created WAV File with path: ${file.path}, size: $length");
-      }
+      file = await _writeWavFile(
+        data: completeDataStream,
+        path: path,
+        name: name,
+      );
+      var length = await file.length();
+      debugPrint("Created WAV File with path: ${file.path}, size: $length");
       completer.complete(file);
     }, onError: (error) {
       debugPrint("Error in input Stream. Cant write file: $path");
@@ -142,12 +142,21 @@ Future<XFile> _writeWavFile({
     ...data
   ]);
 
-  var file = XFile.fromData(
-    dataWithHeader,
-    path: p.join(path, name),
-    name: name,
-    mimeType: "wav",
-  );
+  XFile file;
+  if (kIsWeb) {
+    file = XFile.fromData(
+      dataWithHeader,
+      name: name,
+      mimeType: "wav",
+    );
+  } else {
+    file = XFile.fromData(
+      dataWithHeader,
+      path: p.join(path, name),
+      name: name,
+      mimeType: "wav",
+    );
+  }
 
   return file;
 }
