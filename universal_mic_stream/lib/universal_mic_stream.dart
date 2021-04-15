@@ -30,7 +30,10 @@ Future<Stream<Uint8List?>?> startRecording() async {
 
     var stream = _eventChannel
         .receiveBroadcastStream()
-        .map<Uint8List?>((event) => event);
+        .map<Uint8List?>((event) {
+          print("Result: $event");
+          return event;
+    });
 
     return stream;
   } else {
