@@ -8,7 +8,6 @@ import 'package:http/http.dart' as http;
 import 'dart:web_audio';
 import 'dart:math' as Math;
 import 'package:universal_mic_stream_platform_interface/universal_mic_stream_platform_interface.dart';
-import 'package:audioplayers/audioplayers.dart';
 
 class UniversalMicStreamPlugin extends UniversalMicStreamPlatform {
 
